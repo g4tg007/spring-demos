@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.xiao.springdemo</groupId>
-        <artifactId>root</artifactId>
+        <groupId>com.xiao.demo</groupId>
+        <artifactId>spring-demos</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 

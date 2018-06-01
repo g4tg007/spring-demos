@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xiao.springdemo</groupId>
-    <artifactId>root</artifactId>
+    <groupId>com.xiao.demo</groupId>
+    <artifactId>spring-demos</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -21,9 +21,9 @@
 
         <junit.version>4.12</junit.version>
         <mockito.version>2.13.0</mockito.version>
-        <easymock.version>3.5.1</easymock.version>
+        <easymock.version>3.4</easymock.version>
 
-        <spring.version>4.3.13.RELEASE</spring.version>
+        <spring.version>4.3.17.RELEASE</spring.version>
         <spring.kafka.version>2.1.0.RELEASE</spring.kafka.version>
 
 
@@ -39,6 +39,8 @@
 
     <modules>
         <module>spring-boot-demo</module>
+        <module>spring-cloud-demo</module>
+        <module>spring-context-demo</module>
     </modules>
 
     <dependencyManagement>
@@ -68,8 +70,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
-                <scope>test</scope>
+                <version>4.3.17.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -144,7 +145,45 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.3</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven-compiler-jdk.version}</source>
+                    <target>${maven-compiler-jdk.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

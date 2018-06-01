@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.xiao.springdemo</groupId>
-        <artifactId>root</artifactId>
+        <groupId>com.xiao.demo</groupId>
+        <artifactId>spring-demos</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
@@ -35,6 +35,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -57,7 +61,7 @@
 
         <dependency>
             <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP-java7</artifactId>
+            <artifactId>HikariCP</artifactId>
         </dependency>
         <!--mysql connector-->
         <dependency>
