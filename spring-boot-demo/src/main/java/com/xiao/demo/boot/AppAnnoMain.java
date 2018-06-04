@@ -1,7 +1,7 @@
-package com.xiao.demo.context;
+package com.xiao.demo.boot;
 
 
-import com.xiao.demo.context.service.UserService;
+import com.xiao.demo.boot.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
