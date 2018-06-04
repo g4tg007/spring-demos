@@ -1,7 +1,7 @@
 package com.xiao.demo.boot.dao.impl;
 
 
-import com.xiao.demo.context.dao.UserDao;
+import com.xiao.demo.boot.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 @Repository

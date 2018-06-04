@@ -1,7 +1,7 @@
 package com.xiao.demo.boot.service.impl;
 
-import com.xiao.demo.context.dao.UserDao;
-import com.xiao.demo.context.service.UserService;
+import com.xiao.demo.boot.dao.UserDao;
+import com.xiao.demo.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
