@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <import resource="datasource.xml"/>
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.xiao.demo.webmvc.service,
+        com.xiao.demo.webmvc.dao,com.xiao.demo.webmvc.pojo">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <!-- aop注解支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 启用 annotation事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 配置Jdbc模板 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="modify*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="edit*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="del*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="save*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="batch*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="send*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="invalid*" propagation="NESTED" rollback-for="Exception"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="service" expression="execution(* com.xiao.demo.webmvc.service.*Service*.*(..))"/>
+        <!-- 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="1"/>
+    </aop:config>
+
+</beans>
