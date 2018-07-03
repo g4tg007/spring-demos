@@ -9,10 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
-//@EnableAutoConfiguration
-//@ComponentScan
-@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan(basePackages = {"com.xiao.demo.boot.service","com.xiao.demo.boot.dao"})
+//@SpringBootApplication
 public class BootStarter {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(BootStarter.class, args);

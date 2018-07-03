@@ -1,7 +1,10 @@
 package com.xiao.demo;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-public class AppTest {
+public class AppTest extends TestCase {
 
+    public void testName() {
+
+    }
 }
