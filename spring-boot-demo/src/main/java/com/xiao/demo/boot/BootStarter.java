@@ -9,9 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.xiao.demo.boot.service","com.xiao.demo.boot.dao"})
+//@Configuration
+//@EnableAutoConfiguration
+//@ComponentScan(basePackages = {"com.xiao.demo.boot.service","com.xiao.demo.boot.dao"})
 //@SpringBootApplication
 public class BootStarter {
     public static void main(String[] args) {
@@ -20,8 +20,7 @@ public class BootStarter {
         System.out.println("context 启动成功");
 
         UserService service = context.getBean(UserService.class);
-        // 这句将输出: hello world
-        System.out.println(service.login(RandomStringUtils.randomAlphabetic(100)));
+        System.out.println(service.getById(1));
 
     }
 }

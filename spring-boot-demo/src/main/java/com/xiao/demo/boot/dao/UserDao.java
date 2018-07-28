@@ -1,5 +1,7 @@
 package com.xiao.demo.boot.dao;
 
+import com.xiao.demo.boot.pojo.model.User;
+
 public interface UserDao {
-    String getUser(String user);
+    User getById(Integer id);
 }
