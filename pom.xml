@@ -42,6 +42,8 @@
         <module>spring-cloud-demo</module>
         <module>spring-context-demo</module>
         <module>spring-webmvc-demo</module>
+        <module>spring-data-demo</module>
+        <module>spring-boot-web-demo</module>
     </modules>
 
     <dependencyManagement>
@@ -69,6 +71,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix</artifactId>
@@ -127,7 +137,7 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <!-- 切换commons log 到slf4j桥接实现 -->
-            <dependency>
+                <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
