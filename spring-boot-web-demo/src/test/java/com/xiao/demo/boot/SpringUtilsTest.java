@@ -1,6 +1,6 @@
 package com.xiao.demo.boot;
 
-import org.springframework.boot.bind.RelaxedPropertyResolver;
+//import org.springframework.boot.bind.RelaxedPropertyResolver;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.xiao.demo.boot;
 
-import com.xiao.demo.boot.datasource.DynamicDataSourceRegister;
+import com.xiao.demo.boot.datasource.MultiDataSourceRegister;
 import com.xiao.demo.boot.pojo.model.User;
 import com.xiao.demo.boot.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("com.xiao.demo.boot.mapper")
-@Import({DynamicDataSourceRegister.class})
+@Import({MultiDataSourceRegister.class})
 public class WebStarter {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(WebStarter.class, args);
