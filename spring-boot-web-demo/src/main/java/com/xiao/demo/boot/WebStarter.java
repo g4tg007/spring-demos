@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import java.util.List;
+
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("com.xiao.demo.boot.mapper")
@@ -23,8 +25,11 @@ public class WebStarter {
         System.out.println("context 启动成功");
 
         UserService service = context.getBean(UserService.class);
-        User user = service.getById(1);
-        User user2 = service.getAnnotherById(1);
+//        User user = service.getById(1);
+//        User user2 = service.getAnnotherById(1);
+
+        List list = service.findSummaryList();
+
         System.out.println();
     }
 }

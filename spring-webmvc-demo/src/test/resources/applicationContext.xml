@@ -22,51 +22,45 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-
     <!-- aop注解支持 -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!-- transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSourceKylin"/>
     </bean>
     <!-- 启用 annotation事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 配置Jdbc模板 -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSourceKylin"></property>
     </bean>
 
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="insert*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="add*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="update*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="modify*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="edit*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="del*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="save*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="batch*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="send*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="invalid*" propagation="NESTED" rollback-for="Exception"/>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="query*" read-only="true"/>
-            <tx:method name="search*" read-only="true"/>
-            <tx:method name="select*" read-only="true"/>
-            <tx:method name="count*" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+    <!--<tx:attributes>-->
+    <!--<tx:method name="insert*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="add*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="update*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="modify*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="edit*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="del*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="save*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="batch*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="send*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="invalid*" propagation="NESTED" rollback-for="Exception"/>-->
+    <!--<tx:method name="get*" read-only="true"/>-->
+    <!--<tx:method name="find*" read-only="true"/>-->
+    <!--<tx:method name="query*" read-only="true"/>-->
+    <!--<tx:method name="search*" read-only="true"/>-->
+    <!--<tx:method name="select*" read-only="true"/>-->
+    <!--<tx:method name="count*" read-only="true"/>-->
+    <!--</tx:attributes>-->
+    <!--</tx:advice>-->
 
-    <aop:config>
-        <aop:pointcut id="service" expression="execution(* com.xiao.app.service.*Service*.*(..))"/>
-        <!-- 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） -->
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="2"/>
-
-        <aop:aspect id="dataSourceAdviceAspect" ref="dataSourceAspect" order="1">
-            <aop:before method="chooseDataSource"
-                        pointcut="execution(* com.xiao.app.service.*Service*.*(..))"/>
-        </aop:aspect>
-    </aop:config>
+    <!--<aop:config >-->
+    <!--<aop:pointcut id="service" expression="execution(* com.xiao.demo.webmvc.service.*Service*.*(..))"/>-->
+    <!--&lt;!&ndash; 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） &ndash;&gt;-->
+    <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="1"/>-->
+    <!--</aop:config>-->
 
 </beans>
